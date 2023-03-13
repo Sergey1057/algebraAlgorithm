@@ -1,6 +1,13 @@
 package com.example.algebraalgorithm
 
 fun main() {
+    val simpleSorting = SimpleSorting()
+    val N = 300000
+    simpleSorting.setRandom(N)
+    val start = System.currentTimeMillis()
+    simpleSorting.heapSort()
+    val ms = System.currentTimeMillis() - start
+    println("result  =  $ms")
 }
 
 fun stepen(number: Long, step: Int): Long{
