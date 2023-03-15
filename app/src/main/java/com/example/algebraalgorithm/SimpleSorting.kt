@@ -98,6 +98,59 @@ class SimpleSorting {
         }
     }
 
+    fun quickSort(){
+        qsort(0, N-1)
+    }
+
+    fun qsort(L: Int, R: Int){
+        if (L >= R) return
+        var M = split(L,R)
+        qsort(L, M-1)
+        qsort(M+1, R)
+    }
+
+    fun split(L: Int, R: Int): Int{
+        var P = A[R]
+        var m = L-1
+        for (j in L..R){
+            if (A[j] <= P)
+                swap(++m, j)
+        }
+            return m
+    }
+
+    fun mergeSort(){
+        msort(0, N-1)
+    }
+
+    fun msort(L: Int, R: Int){
+        if ( L >= R) return
+        var M = (L + R) / 2
+        msort(L, M)
+        msort(M + 1, R)
+        merge(L, M, R)
+    }
+
+    fun merge(L: Int, M: Int, R: Int){
+        var T = IntArray(R - L + 1)
+        var a = L
+        var b = M +1
+        var t = 0
+        while (a <= M && b <= R){
+            if (A[a] < A[b]){
+                T[t++] = A[a++]
+            } else {
+                T[t++] = A[b++]
+            }
+        }
+        while (a <= M)
+            T[t++] = A[a++]
+        while (b <= R)
+            T[t++] = A[b++]
+        for (i in L..R)
+            A[i] = T[i - L]
+    }
+
     public fun swap(x: Int, y: Int) {
         val t = A.get(x)
         A[x] = A[y]
