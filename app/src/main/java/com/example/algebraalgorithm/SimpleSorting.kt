@@ -1,6 +1,8 @@
 package com.example.algebraalgorithm
 
+import java.util.*
 import kotlin.random.Random
+
 
 class SimpleSorting {
 
@@ -17,7 +19,7 @@ class SimpleSorting {
         initArray(n)
         val random = Random(12345)
         for (i in 0 until n) {
-            A[i] = random.nextInt(n)
+            A[i] = random.nextInt(999)
         }
     }
 
@@ -129,6 +131,114 @@ class SimpleSorting {
         msort(L, M)
         msort(M + 1, R)
         merge(L, M, R)
+    }
+
+    fun bucketSort() {
+        var max = A[0]
+        for (j in 1 until N) {
+            if (max < A[j])
+                max = A[j]
+        }
+            max++
+            var bucket = Array<CustomList?>(size = N) { null }
+            A.forEach { a ->
+                var b = ((a.toLong() * N.toLong()) / max).toInt()
+                bucket[b] = CustomList(a, bucket[b])
+                var list = bucket[b]
+                while (list?.next != null) {
+                    if (list.value < list.next?.value!!) {
+                        break
+                    }
+                    var x = list.value
+                    list.value = list.next?.value!!
+                    list.next?.value = x!!
+                    list = list.next
+                }
+            }
+            var j = 0
+            bucket.forEach {
+                var list = it
+                while (list != null) {
+                    A[j++] = list!!.value!!
+                    list = list!!.next
+                }
+            }
+        }
+
+
+    class CustomList(var value: Int, var next: CustomList? = null) {
+    }
+
+    fun countSort(exp: Int) {
+        val output = IntArray(A.size)
+        var i: Int
+        val count = IntArray(10)
+        Arrays.fill(count, 0)
+
+        i = 0
+        while (i < A.size) {
+            count[A[i] / exp % 10]++
+            i++
+        }
+
+        i = 1
+        while (i < 10) {
+            count[i] += count[i - 1]
+            i++
+        }
+
+        i = A.size - 1
+        while (i >= 0) {
+            output[count[A[i] / exp % 10] - 1] = A[i]
+            count[A[i] / exp % 10]--
+            i--
+        }
+
+
+        i = 0
+        while (i < A.size) {
+            A[i] = output[i]
+            i++
+        }
+    }
+
+    fun radixSort() {
+        val m: Int = getMax(A, A.size)
+
+        var exp = 1
+        while (m / exp > 0) {
+            countSort(exp)
+            exp *= 10
+        }
+    }
+
+    fun getMax(arr: IntArray, n: Int): Int {
+        var mx = arr[0]
+        for (i in 1 until n) if (arr[i] > mx) mx = arr[i]
+        return mx
+    }
+
+    fun countingSort() {
+
+        var k = A[0]
+        for (i in 1 until A.size) {
+            if (A[i] > k) {
+                k = A[i]
+            }
+        }
+
+        val tempArray = IntArray(k + 1)
+
+        for (value in A) {
+            ++tempArray[value]
+        }
+
+        var b = 0
+        for (i in 0 until k + 1) {
+            for (j in 0 until tempArray[i]) {
+                A[b++] = i
+            }
+        }
     }
 
     fun merge(L: Int, M: Int, R: Int){

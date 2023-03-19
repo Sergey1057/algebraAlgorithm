@@ -2,10 +2,10 @@ package com.example.algebraalgorithm
 
 fun main() {
     val simpleSorting = SimpleSorting()
-    val N = 100000000
+    val N = 100000
     simpleSorting.setRandom(N)
     val start = System.currentTimeMillis()
-    simpleSorting.mergeSort()
+    simpleSorting.countingSort()
     val ms = System.currentTimeMillis() - start
     println("result  =  $ms")
 }
