@@ -1,13 +1,25 @@
 package com.example.algebraalgorithm
 
+import com.example.algebraalgorithm.array.*
+
 fun main() {
-    val simpleSorting = SimpleSorting()
-    val N = 100000
-    simpleSorting.setRandom(N)
-    val start = System.currentTimeMillis()
-    simpleSorting.countingSort()
-    val ms = System.currentTimeMillis() - start
-    println("result  =  $ms")
+//    val simpleSorting = SimpleSorting()
+//    val N = 100000
+//    simpleSorting.setRandom(N)
+//    val start = System.currentTimeMillis()
+//    simpleSorting.countingSort()
+//    val ms = System.currentTimeMillis() - start
+//    println("result  =  $ms")
+
+    val single = SingleArray<Int>()
+    val vector = VectorArray<Int>()
+    val factor = FactorArray<Int>()
+    val arrayListFasade = ArrayListFasade<Int>()
+
+    SingleArray.testPut(single, 1000000)
+    SingleArray.testPut(vector, 1000000)
+    SingleArray.testPut(factor, 1000000)
+    SingleArray.testPut(arrayListFasade, 1000000)
 }
 
 fun stepen(number: Long, step: Int): Long{
