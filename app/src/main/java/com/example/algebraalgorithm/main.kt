@@ -1,6 +1,7 @@
 package com.example.algebraalgorithm
 
 import com.example.algebraalgorithm.array.*
+import com.example.algebraalgorithm.bits.chess
 
 fun main() {
 //    val simpleSorting = SimpleSorting()
@@ -11,15 +12,24 @@ fun main() {
 //    val ms = System.currentTimeMillis() - start
 //    println("result  =  $ms")
 
-    val single = SingleArray<Int>()
-    val vector = VectorArray<Int>()
-    val factor = FactorArray<Int>()
-    val arrayListFasade = ArrayListFasade<Int>()
+//    val single = SingleArray<Int>()
+//    val vector = VectorArray<Int>()
+//    val factor = FactorArray<Int>()
+//    val arrayListFasade = ArrayListFasade<Int>()
+//
+//    SingleArray.testPut(single, 1000000)
+//    SingleArray.testPut(vector, 1000000)
+//    SingleArray.testPut(factor, 1000000)
+//    SingleArray.testPut(arrayListFasade, 1000000)
 
-    SingleArray.testPut(single, 1000000)
-    SingleArray.testPut(vector, 1000000)
-    SingleArray.testPut(factor, 1000000)
-    SingleArray.testPut(arrayListFasade, 1000000)
+    val chess = chess()
+    // задача про короля
+    println(chess.popcnt2(chess.getKingMoves(7)))
+    println(chess.getKingMoves(7))
+
+    // задача про коня
+    println(chess.popcnt2(chess.getKnightMoves(27)))
+    println(chess.getKnightMoves(27))
 }
 
 fun stepen(number: Long, step: Int): Long{
