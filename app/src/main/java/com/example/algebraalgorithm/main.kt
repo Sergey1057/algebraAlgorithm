@@ -1,7 +1,9 @@
 package com.example.algebraalgorithm
 
 import com.example.algebraalgorithm.array.*
-import com.example.algebraalgorithm.bits.chess
+import com.example.algebraalgorithm.tree.BSTNode
+import com.example.algebraalgorithm.tree.BSTTree
+import kotlin.random.Random
 
 fun main() {
 //    val simpleSorting = SimpleSorting()
@@ -22,14 +24,43 @@ fun main() {
 //    SingleArray.testPut(factor, 1000000)
 //    SingleArray.testPut(arrayListFasade, 1000000)
 
-    val chess = chess()
-    // задача про короля
-    println(chess.popcnt2(chess.getKingMoves(7)))
-    println(chess.getKingMoves(7))
+//    val chess = chess()
+//    // задача про короля
+//    println(chess.popcnt2(chess.getKingMoves(7)))
+//    println(chess.getKingMoves(7))
+//
+//    // задача про коня
+//    println(chess.popcnt2(chess.getKnightMoves(27)))
+//    println(chess.getKnightMoves(27))
 
-    // задача про коня
-    println(chess.popcnt2(chess.getKnightMoves(27)))
-    println(chess.getKnightMoves(27))
+
+    val tree = BSTTree()
+
+    val n = 100000
+    val start = System.currentTimeMillis()
+
+    for (i in 0..n){
+        var j = getRandom()
+        tree.insertNode(j)
+    }
+
+//    for (i in 0..n){
+//        tree.insertNode(i)
+//    }
+
+    for (i in 0..n/10){
+        var j = getRandom()
+        tree.search(j)
+        tree.remove(j)
+    }
+   val ms = System.currentTimeMillis() - start
+   println("result  =  $ms")
+
+}
+
+fun getRandom():Int {
+    val random = Random(System.nanoTime())
+        return random.nextInt(10000)
 }
 
 fun stepen(number: Long, step: Int): Long{
