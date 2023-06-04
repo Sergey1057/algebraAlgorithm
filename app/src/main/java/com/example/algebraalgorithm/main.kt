@@ -1,8 +1,7 @@
 package com.example.algebraalgorithm
 
-import com.example.algebraalgorithm.array.*
-import com.example.algebraalgorithm.tree.BSTNode
-import com.example.algebraalgorithm.tree.BSTTree
+import com.example.algebraalgorithm.hash_table.HashTableStorage
+import com.example.algebraalgorithm.hash_table.IStorage
 import kotlin.random.Random
 
 fun main() {
@@ -34,28 +33,46 @@ fun main() {
 //    println(chess.getKnightMoves(27))
 
 
-    val tree = BSTTree()
-
-    val n = 100000
-    val start = System.currentTimeMillis()
-
-    for (i in 0..n){
-        var j = getRandom()
-        tree.insertNode(j)
-    }
+//    val tree = BSTTree()
+//
+//    val n = 100000
+//    val start = System.currentTimeMillis()
+//
+//    for (i in 0..n){
+//        var j = getRandom()
+//        tree.insertNode(j)
+//    }
 
 //    for (i in 0..n){
 //        tree.insertNode(i)
 //    }
 
-    for (i in 0..n/10){
-        var j = getRandom()
-        tree.search(j)
-        tree.remove(j)
-    }
-   val ms = System.currentTimeMillis() - start
-   println("result  =  $ms")
+//    for (i in 0..n/10){
+//        var j = getRandom()
+//        tree.search(j)
+//        tree.remove(j)
+//    }
+//   val ms = System.currentTimeMillis() - start
+//   println("result  =  $ms")
 
+
+    runMapExample(HashTableStorage())
+
+}
+
+fun runMapExample(map: IStorage) {
+    map.put("cat", 30)
+    map.put("fox", 50)
+    map.put("art", 10)
+    map.put("owl", 80)
+    map.put("box", 20)
+    map.put("dog", 40)
+    System.out.println(map.get("art"))
+    System.out.println(map.get("box"))
+    System.out.println(map.get("cat"))
+    System.out.println(map.get("dog"))
+    System.out.println(map.get("fox"))
+    System.out.println(map.get("owl"))
 }
 
 fun getRandom():Int {
