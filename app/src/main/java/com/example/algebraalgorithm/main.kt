@@ -2,6 +2,8 @@ package com.example.algebraalgorithm
 
 import com.example.algebraalgorithm.hash_table.HashTableStorage
 import com.example.algebraalgorithm.hash_table.IStorage
+import com.example.algebraalgorithm.randomTree.RNode
+import com.example.algebraalgorithm.randomTree.RTree
 import kotlin.random.Random
 
 fun main() {
@@ -56,8 +58,29 @@ fun main() {
 //   println("result  =  $ms")
 
 
-    runMapExample(HashTableStorage())
+    //runMapExample(HashTableStorage())
+    runRTree()
 
+}
+
+fun runRTree(){
+    val tree = RTree()
+    val node = RNode(0)
+
+    val n = 100000
+    val start = System.currentTimeMillis()
+
+    for (i in 0..n){
+       var j = getRandom()
+        tree.insert(node, j)
+    }
+    for (i in 0..n/10){
+        var j = getRandom()
+        tree.find(node,j)
+        tree.remove(node,j)
+    }
+    val ms = System.currentTimeMillis() - start
+    println("result  =  $ms")
 }
 
 fun runMapExample(map: IStorage) {
