@@ -1,11 +1,14 @@
 package com.example.algebraalgorithm
 
-import com.example.algebraalgorithm.hash_table.HashTableStorage
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.example.algebraalgorithm.graph.Demucron
 import com.example.algebraalgorithm.hash_table.IStorage
 import com.example.algebraalgorithm.randomTree.RNode
 import com.example.algebraalgorithm.randomTree.RTree
 import kotlin.random.Random
 
+@RequiresApi(Build.VERSION_CODES.N)
 fun main() {
 //    val simpleSorting = SimpleSorting()
 //    val N = 100000
@@ -59,7 +62,16 @@ fun main() {
 
 
     //runMapExample(HashTableStorage())
-    runRTree()
+  //  runRTree()
+    val result = Demucron.demucronSort(
+        Demucron.graph
+    )
+    result.forEachIndexed { index, line ->
+        println("line = " +index)
+        line.forEachIndexed { index1, it ->
+            println( "вершина уровня  " + it)
+        }
+    }
 
 }
 
