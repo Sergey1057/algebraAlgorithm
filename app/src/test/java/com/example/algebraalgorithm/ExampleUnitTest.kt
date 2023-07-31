@@ -1,5 +1,6 @@
 package com.example.algebraalgorithm
 
+import com.example.algebraalgorithm.graph.Deikstra
 import com.example.algebraalgorithm.graph.Edge
 import com.example.algebraalgorithm.graph.Kosaraju
 import com.example.algebraalgorithm.graph.Kraskal
@@ -59,4 +60,32 @@ class ExampleUnitTest {
         fun findMST() {
             assertArrayEquals(result, Kraskal.find(graph))
         }
-}
+
+
+     val graphDeikstra = arrayOf(
+        arrayOf(0, 2, 3, 6, null, null, null),
+        arrayOf(2, 0, 4, null, 9, null, null),
+        arrayOf(3, 4, 0, 1, 7, 6, null),
+        arrayOf(6, null, 1, 0, null, 4, null),
+        arrayOf(null, 9, 7, null, 0, 1, 5),
+        arrayOf(null, null, 6, 4, 1, 0, 8),
+        arrayOf(null, null, null, null, 5, 8, 0)
+    )
+         var algorithm: Deikstra = Deikstra(graphDeikstra, 0)
+
+
+    val resultDeikstra = arrayOf(
+        Edge(0, 2, 3),
+        Edge(2, 3, 1),
+        Edge(3, 5, 4),
+        Edge(5, 4, 1),
+        Edge(4, 6, 5)
+    )
+
+        @Test
+        fun deikstraTest() {
+                assertArrayEquals(
+                    resultDeikstra, algorithm.getPath(6)
+                )
+            }
+    }

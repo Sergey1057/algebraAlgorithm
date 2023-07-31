@@ -35,4 +35,10 @@ public class Array {
         array[from] = array[to];
         array[to] = buffer;
     }
+
+    public static <T> void reverse(T[] array) {
+        for (int i = 0; i < array.length / 2; i++) {
+            swap(i, array.length - i - 1, array);
+        }
+    }
 }
